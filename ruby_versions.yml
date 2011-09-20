@@ -1,0 +1,7 @@
+supported_versions:
+  ruby_186:
+    shortcut: 186
+    bin_folder: C:\ruby\bin
+  ruby_192:
+    shortcut: 192
+    bin_folder: C:\ruby192\bin

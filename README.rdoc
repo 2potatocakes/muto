@@ -14,24 +14,24 @@ This can all be done from the command line without the need to restart your shel
 ===Example Usage
 
     muto
-    >>Expected format:  muto [ruby_version]
-
-    >>Available Versions are:
-    >>  186   - ruby 1.8.6 (2007-09-24 patchlevel 111) [i386-mswin32]
-    >>  192   - ruby 1.9.2p180 (2011-02-18) [i386-mingw32]
-
-    >>Currently using:
-    >>  ruby 1.8.6 (2007-09-24 patchlevel 111) [i386-mswin32]
+        >>Expected format:  muto [ruby_version]
+        >>
+        >>Available Versions are:
+        >>  186   - ruby 1.8.6 (2007-09-24 patchlevel 111) [i386-mswin32]
+        >>  192   - ruby 1.9.2p180 (2011-02-18) [i386-mingw32]
+        >>
+        >>Currently using:
+        >>  ruby 1.8.6 (2007-09-24 patchlevel 111) [i386-mswin32]
 
     ruby -v
-    >>ruby 1.8.6 (2007-09-24 patchlevel 111) [i386-mswin32]
+        >>ruby 1.8.6 (2007-09-24 patchlevel 111) [i386-mswin32]
 
     muto 192
-    >>Environment variable updated
-    >>ruby 1.9.2p180 (2011-02-18) [i386-mingw32]
+        >>Environment variable updated
+        >>ruby 1.9.2p180 (2011-02-18) [i386-mingw32]
 
     ruby -v
-    >>ruby 1.9.2p180 (2011-02-18) [i386-mingw32]
+        >>ruby 1.9.2p180 (2011-02-18) [i386-mingw32]
 
 
 ===Config
