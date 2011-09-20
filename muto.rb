@@ -99,15 +99,19 @@ class Muto
 
     #TODO - Fix regex to support all variants of path names
     @all_bin_paths.each do |bin_path|
+
       path_env_var.gsub!(bin_path, @versions_yml['supported_versions'][versions_yml_key]['bin_folder'].to_s)
+
     end
 
     Win32::Registry::HKEY_CURRENT_USER.open('Environment', Win32::Registry::KEY_WRITE) do |reg|
       reg['PATH'] = path_env_var
     end
 
-    Win32::Registry::HKEY_CURRENT_USER.open('Environment', Win32::Registry::KEY_WRITE) do |reg|
-      reg['HOME'] = @versions_yml['supported_versions'][versions_yml_key]['bin_folder'].to_s.gsub(/bin/, "homepath")
+    @versions_yml['supported_versions'][versions_yml_key]['other_variables'].each do |key, val|
+      Win32::Registry::HKEY_CURRENT_USER.open('Environment', Win32::Registry::KEY_WRITE) do |reg|
+        reg[key.upcase] = val
+      end
     end
 
     broadcast_WM_SETTINGCHANGE_signal

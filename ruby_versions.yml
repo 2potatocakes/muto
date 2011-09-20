@@ -2,6 +2,10 @@ supported_versions:
   ruby_186:
     shortcut: 186
     bin_folder: C:\ruby\bin
+    other_variables:
+      home: C:\ruby\homepath
   ruby_192:
     shortcut: 192
     bin_folder: C:\ruby192\bin
+    other_variables:
+      home: C:\ruby192\homepath
