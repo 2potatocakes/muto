@@ -18,11 +18,12 @@ class Muto
     @versions_yml = YAML.load(IO.read(File.join(File.dirname(__FILE__), 'ruby_versions.yml')))
 
     @versions_yml['supported_versions'].each do |key, val|
-      @supported_versions << @versions_yml['supported_versions'][key]['shortcut']
+      @supported_versions << @versions_yml['supported_versions'][key]['shortcut'].to_s
       @all_bin_paths << @versions_yml['supported_versions'][key]['bin_folder']
 
       begin
-        ruby_exe = File.expand_path(File.join(@versions_yml['supported_versions'][key]['bin_folder'], 'ruby.exe'))
+        exe_name = (@versions_yml['supported_versions'][key]['exe_name']) ? @versions_yml['supported_versions'][key]['exe_name'] : 'ruby.exe'
+        ruby_exe = File.expand_path(File.join(@versions_yml['supported_versions'][key]['bin_folder'], exe_name))
         ruby_version = `"#{ruby_exe}" -v`
 
         if File.exist?(ruby_exe)
@@ -48,7 +49,7 @@ class Muto
       help
     else
       begin
-        version = ARGV.shift.to_i
+        version = ARGV.shift.to_s
       rescue
         puts "Unknown Version"
         help
@@ -56,7 +57,7 @@ class Muto
 
       if @supported_versions.include?(version)
         @versions_yml['supported_versions'].each do |key, val|
-          update_user_path_variable(key.to_s) if @versions_yml['supported_versions'][key]['shortcut'].to_i == version
+          update_user_path_variable(key.to_s) if @versions_yml['supported_versions'][key]['shortcut'].to_s == version
         end
       else
         puts "Unknown Version"
@@ -91,7 +92,10 @@ class Muto
     result = 0
     call_timeout_function.call(HWND_BROADCAST, WM_SETTINGCHANGE, 0, 'Environment', SMTO_ABORTIFHUNG, 5000, result)
 
-    puts "Environment variable updated"
+
+    # The muto.bat script will finish up by outputting the current version or Ruby being used on your system
+    # This next line is just sugar
+    puts "\nSystem updated. Now using:"
   end
 
   def update_user_path_variable(versions_yml_key)
@@ -99,18 +103,18 @@ class Muto
 
     #TODO - Fix regex to support all variants of path names
     @all_bin_paths.each do |bin_path|
-
       path_env_var.gsub!(bin_path, @versions_yml['supported_versions'][versions_yml_key]['bin_folder'].to_s)
-
     end
 
     Win32::Registry::HKEY_CURRENT_USER.open('Environment', Win32::Registry::KEY_WRITE) do |reg|
       reg['PATH'] = path_env_var
     end
 
-    @versions_yml['supported_versions'][versions_yml_key]['other_variables'].each do |key, val|
-      Win32::Registry::HKEY_CURRENT_USER.open('Environment', Win32::Registry::KEY_WRITE) do |reg|
-        reg[key.upcase] = val
+    if @versions_yml['supported_versions'][versions_yml_key]['other_variables']
+      @versions_yml['supported_versions'][versions_yml_key]['other_variables'].each do |key, val|
+        Win32::Registry::HKEY_CURRENT_USER.open('Environment', Win32::Registry::KEY_WRITE) do |reg|
+          reg[key.upcase] = val
+        end
       end
     end
 
@@ -119,10 +123,7 @@ class Muto
   end
 end
 
-
-if __FILE__ == $0
-  if RUBY_PLATFORM =~ /(:?mswin|mingw)/
-    s = Muto.new
-    s.run
-  end
-end
+#if __FILE__ == $0
+  s = Muto.new
+  s.run
+#end

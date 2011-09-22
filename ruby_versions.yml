@@ -9,3 +9,17 @@ supported_versions:
     bin_folder: C:\ruby192\bin
     other_variables:
       home: C:\ruby192\homepath
+  jruby_164_jre6:
+    shortcut: jr_j6
+    bin_folder: C:\jruby-1.6.4\bin
+    exe_name: jruby.exe
+    other_variables:
+      home: C:\jruby-1.6.4\homepath
+      java_home: C:\Program Files\Java\jre6
+  jruby_164_jre7:
+    shortcut: jr_j7
+    bin_folder: C:\jruby-1.6.4\bin
+    exe_name: jruby.exe
+    other_variables:
+      home: C:\jruby-1.6.4\homepath
+      java_home: C:\Program Files\Java\jre7

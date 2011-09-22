@@ -1,14 +1,24 @@
+
 ===Warning
 
-Don't use this yet.. still need to firm it up a bit.
+Don't use this just yet.. still need to firm it all up a little bit..
 
 
 ===Overview
 
-Muto is a handy little ruby/vbs/bat script that I put together that will allow you to actually physically
-change your systems User Environment variables and swap the version of Ruby that your system is using
+Muto is a lightweight little ruby/vbs/bat script that I put together that will allow you to change the version of Ruby that your system is using by
+modifying systems User Environment variables. You can do this with Muto without having to reload your command prompt/shell and all of your gem paths etc
+are automatically updated as you change versions.
 
-This can all be done from the command line without the need to restart your shell
+
+===Why I put this together..
+
+Firstly, I'm not trying to take anything from Pik, check it out first if you haven't already, there's a thousand things you can do with it and it might
+be better suited to what your needs are: https://github.com/vertiginous/pik
+
+I put Muto together because I needed to also frequently change a few environment variables every time I changed my version of ruby and I just got sick
+of having to do it all the time and then having to reload my command prompt as well just to pick up the changes. Also I needed to be able to switch
+ruby versions and persist the change to another version of Ruby across my entire Windows environment.
 
 
 ===Example Usage
@@ -34,8 +44,42 @@ This can all be done from the command line without the need to restart your shel
         >>ruby 1.9.2p180 (2011-02-18) [i386-mingw32]
 
 
-===Config
+===Setup/Config
 
+Clone Muto to a local directory on your Windows machine and then add the Muto diretory to your PATH environment variable. This'll give you access to the
+"muto" command from your command line.
+
+Then modify your local "ruby_versions.yml" and add the versions of Ruby that you have installed on your computer. You can also set other User Environment
+variables at the same time. In the following example I've added the ability to use JRuby164 with either Java Runtime 6 or Java Runtime 7
+
+#ruby_versions.yml
+
+supported_versions:
+  ruby_186:
+    shortcut: 186
+    bin_folder: C:\ruby\bin
+    other_variables:
+      home: C:\ruby\homepath
+  ruby_192:
+    shortcut: 192
+    bin_folder: C:\ruby192\bin
+    other_variables:
+      home: C:\ruby192\homepath
+
+  jruby_164_jre6:
+    shortcut: jr_j6
+    bin_folder: C:\jruby-1.6.4\bin
+    exe_name: jruby.exe
+    other_variables:
+      home: C:\jruby-1.6.4\homepath
+      java_home: C:\Program Files\Java\jre6
+  jruby_164_jre7:
+    shortcut: jr_j7
+    bin_folder: C:\jruby-1.6.4\bin
+    exe_name: jruby.exe
+    other_variables:
+      home: C:\jruby-1.6.4\homepath
+      java_home: C:\Program Files\Java\jre7
 
 
 
