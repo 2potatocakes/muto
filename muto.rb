@@ -123,7 +123,7 @@ class Muto
   end
 end
 
-#if __FILE__ == $0
+if __FILE__ == $0
   s = Muto.new
   s.run
-#end
+end
