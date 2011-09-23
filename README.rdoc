@@ -6,8 +6,8 @@ Don't use this just yet.. still need to firm it all up a little bit..
 
 ===Overview
 
-Muto is a lightweight little ruby/vbs/bat script that I put together that will allow you to change the version of Ruby that your system is using by
-modifying systems User Environment variables. You can do this with Muto without having to reload your command prompt/shell and all of your gem paths etc
+Muto is a lightweight little ruby/vbs/bat script that I put together that will allow you switch to another version of Ruby whilst also allowing you to
+alter your Windows Environment at the same time. You can do this with Muto without having to reload your command prompt/shell and all of your gem paths etc
 are automatically updated as you change versions.
 
 
@@ -37,7 +37,7 @@ ruby versions and persist the change to another version of Ruby across my entire
         >>ruby 1.8.6 (2007-09-24 patchlevel 111) [i386-mswin32]
 
     muto 192
-        >>Environment variable updated
+        >>System updated. Now using:
         >>ruby 1.9.2p180 (2011-02-18) [i386-mingw32]
 
     ruby -v
@@ -54,31 +54,25 @@ variables at the same time. In the following example I've added the ability to u
 
 # ruby_versions.yml
 
-supported_versions:
+ruby_versions:
   ruby_186:
     shortcut: 186
     bin_folder: C:\ruby\bin
-    other_variables:
-      home: C:\ruby\homepath
   ruby_192:
     shortcut: 192
     bin_folder: C:\ruby192\bin
-    other_variables:
-      home: C:\ruby192\homepath
 
   jruby_164_jre6:
     shortcut: jr_j6
     bin_folder: C:\jruby-1.6.4\bin
     exe_name: jruby.exe
     other_variables:
-      home: C:\jruby-1.6.4\homepath
       java_home: C:\Program Files\Java\jre6
   jruby_164_jre7:
     shortcut: jr_j7
     bin_folder: C:\jruby-1.6.4\bin
     exe_name: jruby.exe
     other_variables:
-      home: C:\jruby-1.6.4\homepath
       java_home: C:\Program Files\Java\jre7
 
 

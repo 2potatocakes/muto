@@ -12,22 +12,22 @@ class Muto
 
   def initialize
     @commands = []
-    @supported_versions = []
+    @ruby_versions = []
     @all_bin_paths = []
 
     @versions_yml = YAML.load(IO.read(File.join(File.dirname(__FILE__), 'ruby_versions.yml')))
 
-    @versions_yml['supported_versions'].each do |key, val|
-      @supported_versions << @versions_yml['supported_versions'][key]['shortcut'].to_s
-      @all_bin_paths << @versions_yml['supported_versions'][key]['bin_folder']
+    @versions_yml['ruby_versions'].each do |key, val|
+      @ruby_versions << @versions_yml['ruby_versions'][key]['shortcut'].to_s
+      @all_bin_paths << @versions_yml['ruby_versions'][key]['bin_folder']
 
       begin
-        exe_name = (@versions_yml['supported_versions'][key]['exe_name']) ? @versions_yml['supported_versions'][key]['exe_name'] : 'ruby.exe'
-        ruby_exe = File.expand_path(File.join(@versions_yml['supported_versions'][key]['bin_folder'], exe_name))
+        exe_name = (@versions_yml['ruby_versions'][key]['exe_name']) ? @versions_yml['ruby_versions'][key]['exe_name'] : 'ruby.exe'
+        ruby_exe = File.expand_path(File.join(@versions_yml['ruby_versions'][key]['bin_folder'], exe_name))
         ruby_version = `"#{ruby_exe}" -v`
 
         if File.exist?(ruby_exe)
-          add_version(:"#{@versions_yml['supported_versions'][key]['shortcut'].to_s}", ruby_version)
+          add_version(:"#{@versions_yml['ruby_versions'][key]['shortcut'].to_s}", ruby_version)
         else
           puts "File does not exist: #{ruby_exe.to_s}"
         end
@@ -55,9 +55,9 @@ class Muto
         help
       end
 
-      if @supported_versions.include?(version)
-        @versions_yml['supported_versions'].each do |key, val|
-          update_user_path_variable(key.to_s) if @versions_yml['supported_versions'][key]['shortcut'].to_s == version
+      if @ruby_versions.include?(version)
+        @versions_yml['ruby_versions'].each do |key, val|
+          update_user_path_variable(key.to_s) if @versions_yml['ruby_versions'][key]['shortcut'].to_s == version
         end
       else
         puts "Unknown Version"
@@ -103,15 +103,15 @@ class Muto
 
     #TODO - Fix regex to support all variants of path names
     @all_bin_paths.each do |bin_path|
-      path_env_var.gsub!(bin_path, @versions_yml['supported_versions'][versions_yml_key]['bin_folder'].to_s)
+      path_env_var.gsub!(bin_path, @versions_yml['ruby_versions'][versions_yml_key]['bin_folder'].to_s)
     end
 
     Win32::Registry::HKEY_CURRENT_USER.open('Environment', Win32::Registry::KEY_WRITE) do |reg|
       reg['PATH'] = path_env_var
     end
 
-    if @versions_yml['supported_versions'][versions_yml_key]['other_variables']
-      @versions_yml['supported_versions'][versions_yml_key]['other_variables'].each do |key, val|
+    if @versions_yml['ruby_versions'][versions_yml_key]['other_variables']
+      @versions_yml['ruby_versions'][versions_yml_key]['other_variables'].each do |key, val|
         Win32::Registry::HKEY_CURRENT_USER.open('Environment', Win32::Registry::KEY_WRITE) do |reg|
           reg[key.upcase] = val
         end
