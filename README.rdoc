@@ -50,7 +50,7 @@ Clone Muto to a local directory on your Windows machine and then add the Muto di
 <b>muto</b> command from your command line.
 
 Then modify your local <b>ruby_versions.yml</b> and add the versions of Ruby that you have installed on your computer. You can also set other User Environment
-variables at the same time. In the following example I've added the ability to use JRuby164 with either Java Runtime 6 or Java Runtime 7
+variables at the same time. In the following example I've added the ability to use JRuby164 with either the Java Runtime 6 or Java Runtime 7
 
 # ruby_versions.yml
 
@@ -66,13 +66,13 @@ ruby_versions:
     shortcut: jr_j6
     bin_folder: C:\jruby-1.6.4\bin
     exe_name: jruby.exe
-    other_variables:
+    user_env_variables:
       java_home: C:\Program Files\Java\jre6
   jruby_164_jre7:
     shortcut: jr_j7
     bin_folder: C:\jruby-1.6.4\bin
     exe_name: jruby.exe
-    other_variables:
+    user_env_variables:
       java_home: C:\Program Files\Java\jre7
 
 

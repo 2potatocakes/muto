@@ -110,8 +110,8 @@ class Muto
       reg['PATH'] = path_env_var
     end
 
-    if @versions_yml['ruby_versions'][versions_yml_key]['other_variables']
-      @versions_yml['ruby_versions'][versions_yml_key]['other_variables'].each do |key, val|
+    if @versions_yml['ruby_versions'][versions_yml_key]['user_env_variables']
+      @versions_yml['ruby_versions'][versions_yml_key]['user_env_variables'].each do |key, val|
         Win32::Registry::HKEY_CURRENT_USER.open('Environment', Win32::Registry::KEY_WRITE) do |reg|
           reg[key.upcase] = val
         end
