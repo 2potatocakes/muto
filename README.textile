@@ -27,9 +27,8 @@ muto
 =>
 =>Currently using:
 =>ruby 1.8.6 (2007-09-24 patchlevel 111) [i386-mswin32]
-</pre>
 
-<pre>ruby -v
+ruby -v
 =>ruby 1.8.6 (2007-09-24 patchlevel 111) [i386-mswin32]
 
 muto 192
@@ -46,7 +45,7 @@ Muto works by using an executable .bat file to call a ruby script which will alt
 signal to your Windows environment. It'll then finish by calling a basic vb script to update the shell you're working in so that you won't need to
 restart your command prompt.
 
-The muto gem is not really a gem.. It's just basically a wrapper to help copy these scripts to your machine somewhere.
+The actual muto gem is not really a gem at all.. It's just basically a wrapper to help copy the muto scripts to your machine somewhere.
 
 
 h2. Setup/Config
