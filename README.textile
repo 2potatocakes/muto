@@ -14,26 +14,30 @@ of having to do it all the time and then having to reload my command prompt as w
 ruby versions and persist the change to another version of Ruby across my entire Windows environment.
 
 h2. Example Usage
-<pre>muto
-#=>Expected format:  muto [ruby_version]
-#=>
-#=>Available Versions are:
-#=>    186    ruby 1.8.6 (2007-09-24 patchlevel 111) [i386-mswin32]
-#=>    192    ruby 1.9.2p180 (2011-02-18) [i386-mingw32]
-#=>
-#=>  Currently using:
-#=>  ruby 1.8.6 (2007-09-24 patchlevel 111) [i386-mswin32]
+
+<pre>
+#From the command line
+
+muto
+=>Expected format:  muto [ruby_version]
+=>
+=>Available Versions are:
+=>  186  ruby 1.8.6 (2007-09-24 patchlevel 111) [i386-mswin32]
+=>  192  ruby 1.9.2p180 (2011-02-18) [i386-mingw32]
+=>
+=>Currently using:
+=>ruby 1.8.6 (2007-09-24 patchlevel 111) [i386-mswin32]
 </pre>
 
 <pre>ruby -v
-#=>ruby 1.8.6 (2007-09-24 patchlevel 111) [i386-mswin32]
+=>ruby 1.8.6 (2007-09-24 patchlevel 111) [i386-mswin32]
 
 muto 192
-#=>System updated. Now using:
-#=>ruby 1.9.2p180 (2011-02-18) [i386-mingw32]
+=>System updated. Now using:
+=>ruby 1.9.2p180 (2011-02-18) [i386-mingw32]
 
 ruby -v
-#=>ruby 1.9.2p180 (2011-02-18) [i386-mingw32]
+=>ruby 1.9.2p180 (2011-02-18) [i386-mingw32]
 </pre>
 
 h2. How Muto works..
