@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.summary     = 'I got sick of manually having to change windows environment variables and versions of ruby in the control panel'
   s.description = 'Set up different Windows Ruby environments and switch between them on the command line'
 
-  s.files       = %w(Rakefile Gemfile README.rdoc muto.gemspec) + Dir.glob("{bin,lib}/**/*")
+  s.files       = %w(Rakefile Gemfile README.textile muto.gemspec) + Dir.glob("{bin,lib}/**/*")
   s.bindir      = 'bin'
   s.executables = %w(extract_muto)
   s.post_install_message = %q{
