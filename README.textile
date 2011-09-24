@@ -1,8 +1,8 @@
 h1. Overview
 
-Muto is a lightweight little ruby/vbs/bat script that will allow you switch to another version of Ruby while also allowing you to alter Windows
-Environment variables at the same time. You can do this with Muto without having to reload your command prompt/shell and all gem paths associated
-with the chosen version of ruby are automatically updated as you switch versions.
+Muto is a lightweight little ruby/vbs/bat script that will allow you switch to another version of Ruby while also allowing you to alter Windows Environment
+variables at the same time. You can do this with Muto without having to reload your command prompt/shell and all gem paths associated with the chosen
+version of ruby are automatically updated as you switch versions.
 
 h2. Why I put this together..
 
@@ -18,13 +18,14 @@ h2. Example Usage
 #=>Expected format:  muto [ruby_version]
 #=>
 #=>Available Versions are:
-#=>    186  -  ruby 1.8.6 (2007-09-24 patchlevel 111) [i386-mswin32]
-#=>    192  -  ruby 1.9.2p180 (2011-02-18) [i386-mingw32]
+#=>    186    ruby 1.8.6 (2007-09-24 patchlevel 111) [i386-mswin32]
+#=>    192    ruby 1.9.2p180 (2011-02-18) [i386-mingw32]
 #=>
 #=>  Currently using:
 #=>  ruby 1.8.6 (2007-09-24 patchlevel 111) [i386-mswin32]
+</pre>
 
-ruby -v
+<pre>ruby -v
 #=>ruby 1.8.6 (2007-09-24 patchlevel 111) [i386-mswin32]
 
 muto 192
