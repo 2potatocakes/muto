@@ -1,19 +1,19 @@
 ruby_versions:
-  ruby_186:
-    shortcut: 186
-    bin_folder: C:\ruby\bin
-  ruby_192:
-    shortcut: 192
-    bin_folder: C:\ruby192\bin
-  jruby_164_jre6:
-    shortcut: jr_j6
-    bin_folder: C:\jruby-1.6.4\bin
-    exe_name: jruby.exe
-    user_env_variables:
-      java_home: C:\Program Files\Java\jre6
-  jruby_164_jre7:
-    shortcut: jr_j7
-    bin_folder: C:\jruby-1.6.4\bin
-    exe_name: jruby.exe
-    user_env_variables:
-      java_home: C:\Program Files\Java\jre7
+#  ruby_186:
+#    shortcut: 186
+#    bin_folder: C:\ruby\bin
+#  ruby_192:
+#    shortcut: 192
+#    bin_folder: C:\ruby192\bin
+#  jruby_164_jre6:
+#    shortcut: jr_j6
+#    bin_folder: C:\jruby-1.6.4\bin
+#    exe_name: jruby.exe
+#    user_env_variables:
+#      java_home: C:\Program Files\Java\jre6
+#  jruby_164_jre7:
+#    shortcut: jr_j7
+#    bin_folder: C:\jruby-1.6.4\bin
+#    exe_name: jruby.exe
+#    user_env_variables:
+#      java_home: C:\Program Files\Java\jre7

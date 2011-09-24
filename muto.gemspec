@@ -30,5 +30,5 @@ extract_muto
 }
 
   s.require_paths = ['lib']
-  s.extra_rdoc_files = ['README.rdoc']
+  s.extra_rdoc_files = ['README.textile']
 end

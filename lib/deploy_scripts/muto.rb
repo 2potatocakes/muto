@@ -17,24 +17,34 @@ class Muto
 
     @versions_yml = YAML.load(IO.read(File.join(File.dirname(__FILE__), 'ruby_versions.yml')))
 
-    @versions_yml['ruby_versions'].each do |key, val|
-      @ruby_versions << @versions_yml['ruby_versions'][key]['shortcut'].to_s
-      @all_bin_paths << @versions_yml['ruby_versions'][key]['bin_folder']
+    if @versions_yml['ruby_versions'].nil?
+      puts "There aren't any version of Ruby defined in your ruby_versions.yml yet"
+      puts "Update #{File.expand_path(File.join(File.dirname(__FILE__), "ruby_versions.yml")).to_s.gsub(/\//, '\\')} first and try again"
+      puts "\nCurrently using:"
+      exit!
+    else
 
-      begin
-        exe_name = (@versions_yml['ruby_versions'][key]['exe_name']) ? @versions_yml['ruby_versions'][key]['exe_name'] : 'ruby.exe'
-        ruby_exe = File.expand_path(File.join(@versions_yml['ruby_versions'][key]['bin_folder'], exe_name))
-        ruby_version = `"#{ruby_exe}" -v`
+      @versions_yml['ruby_versions'].each do |key, val|
+        @ruby_versions << @versions_yml['ruby_versions'][key]['shortcut'].to_s
+        @all_bin_paths << @versions_yml['ruby_versions'][key]['bin_folder']
 
-        if File.exist?(ruby_exe)
-          add_version(:"#{@versions_yml['ruby_versions'][key]['shortcut'].to_s}", ruby_version)
-        else
-          puts "File does not exist: #{ruby_exe.to_s}"
+        begin
+          exe_name = (@versions_yml['ruby_versions'][key]['exe_name']) ? @versions_yml['ruby_versions'][key]['exe_name'] : 'ruby.exe'
+          ruby_exe = File.expand_path(File.join(@versions_yml['ruby_versions'][key]['bin_folder'], exe_name))
+          ruby_version = `"#{ruby_exe}" -v`
+
+          if File.exist?(ruby_exe)
+            add_version(:"#{@versions_yml['ruby_versions'][key]['shortcut'].to_s}", ruby_version)
+          else
+            puts "File does not exist: #{ruby_exe.to_s}"
+          end
+
+        rescue
+          puts "Error: File does not exist: #{ruby_exe.to_s}"
         end
 
-      rescue
-        puts "Error: File does not exist: #{ruby_exe.to_s}"
       end
+
 
     end
 
@@ -63,7 +73,6 @@ class Muto
         puts "Unknown Version"
         help
       end
-
     end
   end
 

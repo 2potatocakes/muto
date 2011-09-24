@@ -1,0 +1,131 @@
+h1. Muto Overview
+
+Muto is a lightweight little ruby/vbs/bat script that I put together that will allow you switch to another version of Ruby whilst also allowing you to
+alter your Windows Environment at the same time. You can do this with Muto without having to reload your command prompt/shell and all of your gem paths etc
+are automatically updated as you change versions.
+
+h2. Why I put this together..
+
+Firstly, I'm not trying to take anything from Pik, check it out first if you haven't already, there's a thousand things you can do with it and it might
+be better suited to what your needs are: https://github.com/vertiginous/pik
+
+I put Muto together because I needed to also frequently change a few environment variables every time I changed my version of ruby and I just got sick
+of having to do it all the time and then having to reload my command prompt as well just to pick up the changes. Also I needed to be able to switch
+ruby versions and persist the change to another version of Ruby across my entire Windows environment.
+
+h2. Example Usage
+<pre>
+    muto
+        >>Expected format:  muto [ruby_version]
+        >>
+        >>Available Versions are:
+        >>  186   - ruby 1.8.6 (2007-09-24 patchlevel 111) [i386-mswin32]
+        >>  192   - ruby 1.9.2p180 (2011-02-18) [i386-mingw32]
+        >>
+        >>Currently using:
+        >>  ruby 1.8.6 (2007-09-24 patchlevel 111) [i386-mswin32]
+
+    ruby -v
+        >>ruby 1.8.6 (2007-09-24 patchlevel 111) [i386-mswin32]
+
+    muto 192
+        >>System updated. Now using:
+        >>ruby 1.9.2p180 (2011-02-18) [i386-mingw32]
+
+    ruby -v
+        >>ruby 1.9.2p180 (2011-02-18) [i386-mingw32]
+</pre>
+
+h2. How Muto works..
+
+Muto works by using an executable .bat file to call a ruby script which will alter your systems environment variables and send an environment changed signal
+to your Windows environment. It'll then finish by calling a basic vb script to update the shell you're working in so that you won't need to restart your command prompt.
+
+The muto gem is not really a gem.. It's just basically a wrapper to help copy these scripts to your machine somewhere.
+
+
+h2. Setup/Config
+
+Use a normal Windows MRI version of Ruby to install Muto.
+<pre>gem install muto</pre>
+
+From the command line, change into a directory where you want to keep the scripts and run: extract_muto
+
+<pre>cd c:\
+extract_muto
+
+  >>Extracting to C:\Muto
+  >>Generating C:\Muto\muto.rb
+  >>Generating C:\Muto\reset_command_line.vbs
+  >>Generating C:\Muto\ruby_versions.yml
+  >>Writing C:\Muto\muto.bat file..
+
+  >>Add Ruby versions to your C:\Muto\ruby_versions.yml"
+  >>Then add C:\Muto to your Windows PATH environment variable and you're good to go
+</pre>
+
+
+h3. ruby_versions.yml
+
+As well as being able to switch to other versions of Ruby in your Windows environment, you can also define other User Environment Variables to change at the same time.
+Muto switches versions of Ruby by just regex-ing out the ruby bin folder out of your Windows PATH variable and replacing it with the new version you choose.
+This way none of the other paths in your environments PATH variable are altered.
+
+The User Environment Variables are set completely differently! The values you give them are the full values used to define the variable so if there is an existing variable
+ already defined in your User Environment variables then it will be overwritten with the new value.
+
+<pre>
+# ruby_versions.yml example
+
+ruby_versions:
+  ruby_186:
+    shortcut: 186
+    bin_folder: C:\ruby\bin
+  ruby_192:
+    shortcut: 192
+    bin_folder: C:\ruby192\bin
+
+  jruby_164_jre6:
+    shortcut: jr_j6
+    bin_folder: C:\jruby-1.6.4\bin
+    exe_name: jruby.exe
+    user_env_variables:
+      java_home: C:\Program Files\Java\jre6
+  jruby_164_jre7:
+    shortcut: jr_j7
+    bin_folder: C:\jruby-1.6.4\bin
+    exe_name: jruby.exe
+    user_env_variables:
+      java_home: C:\Program Files\Java\jre7
+
+</pre>
+
+
+
+h2. License
+
+MIT License
+
+Copyright (C) 2011 by Lucas Hills
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+
+
+

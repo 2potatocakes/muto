@@ -56,7 +56,8 @@ class Muto
           dest.close
       end
 
-      puts "\nNow add #{muto_root_dir.to_s.gsub(/\//, '\\')} to your Windows PATH environment variable and you're good to go"
+      puts "\nAdd Ruby versions to your #{muto_root_dir.to_s.gsub(/\//, '\\')}\\ruby_versions.yml"
+      puts "Then add #{muto_root_dir.to_s.gsub(/\//, '\\')} to your Windows PATH environment variable and you're good to go"
 
     rescue
       puts $!, $!.backtrace
