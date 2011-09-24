@@ -15,25 +15,25 @@ ruby versions and persist the change to another version of Ruby across my entire
 
 h2. Example Usage
 <pre>
-    muto
-        >>Expected format:  muto [ruby_version]
-        >>
-        >>Available Versions are:
-        >>  186   - ruby 1.8.6 (2007-09-24 patchlevel 111) [i386-mswin32]
-        >>  192   - ruby 1.9.2p180 (2011-02-18) [i386-mingw32]
-        >>
-        >>Currently using:
-        >>  ruby 1.8.6 (2007-09-24 patchlevel 111) [i386-mswin32]
+muto
+  =>Expected format:  muto [ruby_version]
+  =>
+  =>Available Versions are:
+  =>  186   - ruby 1.8.6 (2007-09-24 patchlevel 111) [i386-mswin32]
+  =>  192   - ruby 1.9.2p180 (2011-02-18) [i386-mingw32]
+  =>
+  =>Currently using:
+  =>  ruby 1.8.6 (2007-09-24 patchlevel 111) [i386-mswin32]
 
-    ruby -v
-        >>ruby 1.8.6 (2007-09-24 patchlevel 111) [i386-mswin32]
+ruby -v
+  =>ruby 1.8.6 (2007-09-24 patchlevel 111) [i386-mswin32]
 
-    muto 192
-        >>System updated. Now using:
-        >>ruby 1.9.2p180 (2011-02-18) [i386-mingw32]
+muto 192
+  =>System updated. Now using:
+  =>ruby 1.9.2p180 (2011-02-18) [i386-mingw32]
 
-    ruby -v
-        >>ruby 1.9.2p180 (2011-02-18) [i386-mingw32]
+ruby -v
+  =>ruby 1.9.2p180 (2011-02-18) [i386-mingw32]
 </pre>
 
 h2. How Muto works..
@@ -54,22 +54,22 @@ From the command line, change into a directory where you want to keep the script
 <pre>cd c:\
 extract_muto
 
-  >>Extracting to C:\Muto
-  >>Generating C:\Muto\muto.rb
-  >>Generating C:\Muto\reset_command_line.vbs
-  >>Generating C:\Muto\ruby_versions.yml
-  >>Writing C:\Muto\muto.bat file..
-
-  >>Add Ruby versions to your C:\Muto\ruby_versions.yml"
-  >>Then add C:\Muto to your Windows PATH environment variable and you're good to go
+  =>Extracting to C:\Muto
+  =>Generating C:\Muto\muto.rb
+  =>Generating C:\Muto\reset_command_line.vbs
+  =>Generating C:\Muto\ruby_versions.yml
+  =>Writing C:\Muto\muto.bat file..
+  =>
+  =>Add Ruby versions to your C:\Muto\ruby_versions.yml"
+  =>Then add C:\Muto to your Windows PATH environment variable and you're good to go
 </pre>
 
 
 h3. ruby_versions.yml
 
-As well as being able to switch to other versions of Ruby in your Windows environment, you can also define other User Environment Variables to change at the same time.
-Muto switches versions of Ruby by just regex-ing out the ruby bin folder out of your Windows PATH variable and replacing it with the new version you choose.
-This way none of the other paths in your environments PATH variable are altered.
+As well as being able to switch to other versions of Ruby in your Windows environment, you can also define other User Environment Variables to change at
+the same time. Muto switches versions of Ruby by just regex-ing out the ruby bin folder out of your Windows PATH variable and replacing it with the new
+version you choose. This way none of the other paths in your environments PATH variable are altered.
 
 The User Environment Variables are set completely differently! The values you give them are the full values used to define the variable so if there is an existing variable
  already defined in your User Environment variables then it will be overwritten with the new value.
