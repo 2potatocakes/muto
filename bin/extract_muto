@@ -1,0 +1,76 @@
+#!/usr/bin/env ruby
+
+require 'fileutils'
+require 'rbconfig'
+
+#
+# The following script will just extract the contents of the deploy_scripts directory somewhere onto the users
+# machine. The directory where the scripts are extracted to should be added to your Windows PATH environment variable
+# to add the muto command to the command line
+#
+# Usage: extract_muto
+#
+
+class Muto
+
+  def self.deploy
+    begin
+      muto_root_dir = File.expand_path(File.join(Dir.pwd, 'Muto'))
+      puts "Extracting to #{muto_root_dir.to_s.gsub(/\//, '\\')}"
+      FileUtils.mkdir_p(muto_root_dir) unless File.directory?(muto_root_dir)
+
+      template_dir = File.expand_path(File.join(File.dirname(__FILE__), "/../lib/deploy_scripts"))
+      templates = File.join(template_dir, "/**/*")
+
+      Dir[templates].each do |source|
+
+        next if source.match(/muto.bat\z/) #ignore muto.bat here, going to write it next
+
+        destination = File.join(muto_root_dir, source.gsub(/^.*\/deploy_scripts/, ''))
+        if File.exist?(destination) || (File.directory? destination)
+          puts "Skipping #{destination.to_s.gsub(/\//, '\\')} because it already exists"
+        else
+          puts "Generating #{destination.to_s.gsub(/\//, '\\')}"
+          File.directory?(source) ? FileUtils.mkdir(destination) : FileUtils.cp(source, destination)
+        end
+      end
+
+      ruby = File.join(Config::CONFIG['bindir'], Config::CONFIG['ruby_install_name'])
+      ruby << Config::CONFIG['EXEEXT']
+
+      # The muto.bat script needs to have a hardcoded fullpath to a Ruby.exe so that it can function
+      # independently from the version of ruby installed on your system. The following few lines just
+      # amend the muto.bat script to use the fullpath of the version of ruby that you've used to extract
+      # the muto scripts
+
+      orig = File.open(File.expand_path(File.join(File.dirname(__FILE__), "/../lib/deploy_scripts", "muto.bat")))
+      dest = File.new(File.expand_path(File.join(muto_root_dir, "muto.bat")), "w")
+
+      puts "Writing #{dest.path.to_s.gsub(/\//, '\\')} file.."
+      begin
+          while (line = orig.readline)
+              dest.puts line.gsub(/C:\\ruby\\bin\\ruby.exe/, ruby)
+          end
+      rescue EOFError
+          orig.close
+          dest.close
+      end
+
+      puts "\nNow add #{muto_root_dir.to_s.gsub(/\//, '\\')} to your Windows PATH environment variable and you're good to go"
+
+    rescue
+      puts $!, $!.backtrace
+      puts "Installation failed"
+    end
+  end
+
+end
+
+
+if RUBY_PLATFORM =~ /(:?mswin|mingw)/
+  Muto.deploy
+else
+  puts "Muto will only work properly if extracted using a Windows MRI version of Ruby"
+  puts "mswin or mingw versions should work fine"
+end
+

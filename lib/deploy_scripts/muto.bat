@@ -15,6 +15,8 @@ call "%TEMP%\reset_command_line.bat"
 
 :: The end of this script just outputs the now current version of Ruby being used by your system
 :: Using 2> NUL just means that if the ruby/jruby command doesn't exist, the error message won't be output
+:: to the command line.
+:: TODO - need to add support for all Ruby executables here
 
 @ruby -v 2> NUL
 @jruby -v 2> NUL
