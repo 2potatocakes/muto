@@ -1,13 +1,13 @@
-h1. Muto Overview
+h1. Overview
 
-Muto is a lightweight little ruby/vbs/bat script that I put together that will allow you switch to another version of Ruby whilst also allowing you to
-alter your Windows Environment at the same time. You can do this with Muto without having to reload your command prompt/shell and all of your gem paths etc
-are automatically updated as you change versions.
+Muto is a lightweight little ruby/vbs/bat script that I put together that will allow you switch to another version of Ruby whilst also allowing you to alter
+your Windows Environment at the same time. You can do this with Muto without having to reload your command prompt/shell and all of your gem paths etc are
+automatically updated as you change versions.
 
 h2. Why I put this together..
 
-Firstly, I'm not trying to take anything from Pik, check it out first if you haven't already, there's a thousand things you can do with it and it might
-be better suited to what your needs are: https://github.com/vertiginous/pik
+Firstly, I'm not trying to take anything from Pik, check it out first if you haven't already, there's a thousand things you can do with it and it might be
+better suited to what your needs are: https://github.com/vertiginous/pik
 
 I put Muto together because I needed to also frequently change a few environment variables every time I changed my version of ruby and I just got sick
 of having to do it all the time and then having to reload my command prompt as well just to pick up the changes. Also I needed to be able to switch
@@ -38,8 +38,9 @@ ruby -v
 
 h2. How Muto works..
 
-Muto works by using an executable .bat file to call a ruby script which will alter your systems environment variables and send an environment changed signal
-to your Windows environment. It'll then finish by calling a basic vb script to update the shell you're working in so that you won't need to restart your command prompt.
+Muto works by using an executable .bat file to call a ruby script which will alter your systems environment variables and send an environment changed
+signal to your Windows environment. It'll then finish by calling a basic vb script to update the shell you're working in so that you won't need to
+restart your command prompt.
 
 The muto gem is not really a gem.. It's just basically a wrapper to help copy these scripts to your machine somewhere.
 
@@ -71,8 +72,8 @@ As well as being able to switch to other versions of Ruby in your Windows enviro
 the same time. Muto switches versions of Ruby by just regex-ing out the ruby bin folder out of your Windows PATH variable and replacing it with the new
 version you choose. This way none of the other paths in your environments PATH variable are altered.
 
-The User Environment Variables are set completely differently! The values you give them are the full values used to define the variable so if there is an existing variable
- already defined in your User Environment variables then it will be overwritten with the new value.
+The User Environment Variables are set completely differently! The values you give them are the full values used to define the variable so if there is an
+existing variable already defined in your User Environment variables then it will be overwritten with the new value.
 
 <pre>
 # ruby_versions.yml example
