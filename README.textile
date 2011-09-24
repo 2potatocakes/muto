@@ -1,8 +1,8 @@
 h1. Overview
 
-Muto is a lightweight little ruby/vbs/bat script that I put together that will allow you switch to another version of Ruby whilst also allowing you to alter
-your Windows Environment at the same time. You can do this with Muto without having to reload your command prompt/shell and all of your gem paths etc are
-automatically updated as you change versions.
+Muto is a lightweight little ruby/vbs/bat script that will allow you switch to another version of Ruby while also allowing you to alter Windows
+Environment variables at the same time. You can do this with Muto without having to reload your command prompt/shell and all gem paths associated
+with the chosen version of ruby are automatically updated as you switch versions.
 
 h2. Why I put this together..
 
@@ -14,26 +14,25 @@ of having to do it all the time and then having to reload my command prompt as w
 ruby versions and persist the change to another version of Ruby across my entire Windows environment.
 
 h2. Example Usage
-<pre>
-muto
-  =>Expected format:  muto [ruby_version]
-  =>
-  =>Available Versions are:
-  =>  186   - ruby 1.8.6 (2007-09-24 patchlevel 111) [i386-mswin32]
-  =>  192   - ruby 1.9.2p180 (2011-02-18) [i386-mingw32]
-  =>
-  =>Currently using:
-  =>  ruby 1.8.6 (2007-09-24 patchlevel 111) [i386-mswin32]
+<pre>muto
+#=>Expected format:  muto [ruby_version]
+#=>
+#=>Available Versions are:
+#=>    186  -  ruby 1.8.6 (2007-09-24 patchlevel 111) [i386-mswin32]
+#=>    192  -  ruby 1.9.2p180 (2011-02-18) [i386-mingw32]
+#=>
+#=>  Currently using:
+#=>  ruby 1.8.6 (2007-09-24 patchlevel 111) [i386-mswin32]
 
 ruby -v
-  =>ruby 1.8.6 (2007-09-24 patchlevel 111) [i386-mswin32]
+#=>ruby 1.8.6 (2007-09-24 patchlevel 111) [i386-mswin32]
 
 muto 192
-  =>System updated. Now using:
-  =>ruby 1.9.2p180 (2011-02-18) [i386-mingw32]
+#=>System updated. Now using:
+#=>ruby 1.9.2p180 (2011-02-18) [i386-mingw32]
 
 ruby -v
-  =>ruby 1.9.2p180 (2011-02-18) [i386-mingw32]
+#=>ruby 1.9.2p180 (2011-02-18) [i386-mingw32]
 </pre>
 
 h2. How Muto works..
@@ -54,15 +53,14 @@ From the command line, change into a directory where you want to keep the script
 
 <pre>cd c:\
 extract_muto
-
-  =>Extracting to C:\Muto
-  =>Generating C:\Muto\muto.rb
-  =>Generating C:\Muto\reset_command_line.vbs
-  =>Generating C:\Muto\ruby_versions.yml
-  =>Writing C:\Muto\muto.bat file..
-  =>
-  =>Add Ruby versions to your C:\Muto\ruby_versions.yml"
-  =>Then add C:\Muto to your Windows PATH environment variable and you're good to go
+#=>Extracting to C:\Muto
+#=>Generating C:\Muto\muto.rb
+#=>Generating C:\Muto\reset_command_line.vbs
+#=>Generating C:\Muto\ruby_versions.yml
+#=>Writing C:\Muto\muto.bat file..
+#=>
+#=>Add Ruby versions to your C:\Muto\ruby_versions.yml"
+#=>Then add C:\Muto to your Windows PATH environment variable and you're good to go
 </pre>
 
 
@@ -100,7 +98,6 @@ ruby_versions:
       java_home: C:\Program Files\Java\jre7
 
 </pre>
-
 
 
 h2. License
