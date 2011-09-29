@@ -19,24 +19,28 @@ h2. Example Usage
 #From the command line
 
 muto
-=>Expected format:  muto [ruby_version]
-=>
-=>Available Versions are:
-=>  186  ruby 1.8.6 (2007-09-24 patchlevel 111) [i386-mswin32]
-=>  192  ruby 1.9.2p180 (2011-02-18) [i386-mingw32]
-=>
-=>Currently using:
-=>ruby 1.8.6 (2007-09-24 patchlevel 111) [i386-mswin32]
+  =>Expected format:  muto [ruby_version]
+  =>
+  =>Available Versions are:
+  =>  186  ruby 1.8.6 (2007-09-24 patchlevel 111) [i386-mswin32]
+  =>  192  ruby 1.9.2p180 (2011-02-18) [i386-mingw32]
+  =>
+  =>Currently using:
+  =>ruby 1.8.6 (2007-09-24 patchlevel 111) [i386-mswin32]
 
 ruby -v
-=>ruby 1.8.6 (2007-09-24 patchlevel 111) [i386-mswin32]
+  =>ruby 1.8.6 (2007-09-24 patchlevel 111) [i386-mswin32]
+echo %JAVA_HOME%
+  =>C:\Program Files\Java\jre5
 
 muto 192
-=>System updated. Now using:
-=>ruby 1.9.2p180 (2011-02-18) [i386-mingw32]
+  =>System updated. Now using:
+  =>ruby 1.9.2p180 (2011-02-18) [i386-mingw32]
 
 ruby -v
-=>ruby 1.9.2p180 (2011-02-18) [i386-mingw32]
+  =>ruby 1.9.2p180 (2011-02-18) [i386-mingw32]
+echo %JAVA_HOME%
+  =>C:\Program Files\Java\jre7
 </pre>
 
 h2. How Muto works..
@@ -67,7 +71,6 @@ extract_muto
 #=>Then add C:\Muto to your Windows PATH environment variable and you're good to go
 </pre>
 
-
 h3. ruby_versions.yml
 
 As well as being able to switch to other versions of Ruby in your Windows environment, you can also define other User Environment Variables to change at
@@ -84,20 +87,11 @@ ruby_versions:
   ruby_186:
     shortcut: 186
     bin_folder: C:\ruby\bin
+    user_env_variables:
+      java_home: C:\Program Files\Java\jre5
   ruby_192:
     shortcut: 192
     bin_folder: C:\ruby192\bin
-
-  jruby_164_jre6:
-    shortcut: jr_j6
-    bin_folder: C:\jruby-1.6.4\bin
-    exe_name: jruby.exe
-    user_env_variables:
-      java_home: C:\Program Files\Java\jre6
-  jruby_164_jre7:
-    shortcut: jr_j7
-    bin_folder: C:\jruby-1.6.4\bin
-    exe_name: jruby.exe
     user_env_variables:
       java_home: C:\Program Files\Java\jre7
 
