@@ -108,7 +108,12 @@ class Muto
   end
 
   def update_user_path_variable(versions_yml_key)
-    reg_key, path_env_var = Win32::Registry::HKEY_CURRENT_USER.open('Environment').read('PATH')
+    begin
+      reg_key, path_env_var = Win32::Registry::HKEY_CURRENT_USER.open('Environment').read('PATH')
+    rescue
+      user_path_env_not_set_properly_msg
+      exit!
+    end
 
     #TODO - Fix regex to support all variants of path names
     @all_bin_paths.each do |bin_path|
@@ -128,7 +133,17 @@ class Muto
     end
 
     broadcast_WM_SETTINGCHANGE_signal
+  end
 
+private
+
+  def user_path_env_not_set_properly_msg
+    puts "\nThere are no User environment variables named PATH defined, most likely your
+          \nruby version is defined on your System PATH environment variable. Muto can
+          \nonly modify User environment variables, not system environment variables.
+          \nSwitch your path to ruby over to a User environment variable and you
+          \nshould be good to go :)"
+    puts "\nSystem did not update! Still using:"
   end
 end
 
