@@ -108,6 +108,7 @@ class Muto
   end
 
   def update_user_path_variable(versions_yml_key)
+
     begin
       reg_key, path_env_var = Win32::Registry::HKEY_CURRENT_USER.open('Environment').read('PATH')
     rescue
