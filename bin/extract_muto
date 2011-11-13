@@ -24,14 +24,20 @@ class Muto
 
       Dir[templates].each do |source|
 
-        next if source.match(/muto.bat\z/) #ignore muto.bat here, going to write it next
+        next if source.match(/muto.bat\z/) #ignore muto.bat here, going to write it manually next
 
         destination = File.join(muto_root_dir, source.gsub(/^.*\/deploy_scripts/, ''))
-        if File.exist?(destination) || (File.directory? destination)
-          puts "Skipping #{destination.to_s.gsub(/\//, '\\')} because it already exists"
+        if File.exist?(destination) && destination.match(/ruby_versions\.yml/)
+          puts "Leaving #{destination.to_s.gsub(/\//, '\\')} because a copy already exists"
         else
-          puts "Generating #{destination.to_s.gsub(/\//, '\\')}"
-          File.directory?(source) ? FileUtils.mkdir(destination) : FileUtils.cp(source, destination)
+          if File.exist?(destination)
+            puts "Replacing #{destination.to_s.gsub(/\//, '\\')}"
+            FileUtils.rm_rf(destination)
+            FileUtils.cp(source, destination)
+          else
+            puts "Generating #{destination.to_s.gsub(/\//, '\\')}"
+            File.directory?(source) ? FileUtils.mkdir(destination) : FileUtils.cp(source, destination)
+          end
         end
       end
 
@@ -57,7 +63,7 @@ class Muto
       end
 
       puts "\nAdd Ruby versions to your #{muto_root_dir.to_s.gsub(/\//, '\\')}\\ruby_versions.yml"
-      puts "Then add #{muto_root_dir.to_s.gsub(/\//, '\\')} to your Windows PATH environment variable and you're good to go"
+      puts "Then add #{muto_root_dir.to_s.gsub(/\//, '\\')} to your User PATH environment variable and you're good to go"
 
     rescue
       puts $!, $!.backtrace
