@@ -1,16 +1,15 @@
 @ECHO OFF
 
 
-
+:: This bat script is what is actually executed when you run 'muto' from the command line
+::
 C:\ruby\bin\ruby.exe %~dp0\muto.rb %* 2> NUL
 
 
-:: The following 2 lines allow you to not have to reset your command line in order to pick up
-:: the new Environment Variables
-
+:: The following 2 lines allow you to not have to reinitialise your command prompt window
+:: in order to pick up the new Environment Variables
 reset_command_line.vbs
 call "%TEMP%\reset_command_line.bat"
-
 
 
 :: The end of this script just outputs the now current version of Ruby being used by your system
