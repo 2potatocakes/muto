@@ -1,19 +1,14 @@
 h1. Overview
 
-Muto is a lightweight little ruby/vbs/bat script that will allow you switch to another version of Ruby while also allowing you to alter multiple other
-Windows Environment variables at the same time. You can do this with Muto without having to reload your command prompt/shell and all gem paths associated
-with the chosen version of ruby are automatically updated as you switch versions.
+Muto is a lightweight little ruby/vbs/bat script that will allow you switch to another version of Ruby while also allowing you to alter multiple other Windows Environment variables at the same time. You can do this with Muto without having to reload your command prompt/shell and all gem paths associated with the chosen version of ruby are automatically updated as you switch versions.
 
 *As a precautionary measure when using muto, make a backup of your Windows PATH environment variable before using this gem*
 
 h2. Why I put this together..
 
-Firstly, I'm not trying to take anything from Pik, check it out first if you haven't already, there's a thousand things you can do with it and it might be
-better suited to what your needs are: https://github.com/vertiginous/pik
+Firstly, I'm not trying to take anything from Pik, check it out first if you haven't already, there's a thousand things you can do with it and it might be better suited to what your needs are: https://github.com/vertiginous/pik
 
-I put Muto together because I needed to also frequently change a few environment variables every time I changed my version of ruby and I just got sick
-of having to do it all the time and then having to reload my command prompt as well just to pick up the changes. Also I needed to be able to switch
-ruby versions and persist the change to another version of Ruby across my entire Windows environment.
+I put Muto together because I needed to also frequently change a few environment variables every time I changed my version of ruby and I just got sick of having to do it all the time and then having to reload my command prompt as well just to pick up the changes. Also I needed to be able to switch ruby versions and persist the change to another version of Ruby across my entire Windows environment.
 
 h2. Example Usage
 
@@ -48,9 +43,7 @@ echo %JAVA_HOME%
 
 h2. How Muto works..
 
-Muto works by using an executable .bat file to call a ruby script which will alter your systems environment variables and send an environment changed
-signal to your Windows environment. It'll then finish by calling a basic vb script to update the shell you're working in so that you won't need to
-restart your command prompt/shell window.
+Muto works by using an executable .bat file to call a ruby script which will alter your systems environment variables and send an environment changed signal to your Windows environment. It'll then finish by calling a basic vb script to update the shell you're working in so that you won't need to restart your command prompt/shell window.
 
 The actual muto gem is not really a gem at all.. It's just basically a wrapper to help copy the muto scripts to your machine somewhere.
 
@@ -76,24 +69,17 @@ extract_muto
 
 h3. ruby_versions.yml
 
-As well as being able to switch to other versions of Ruby in your Windows environment, you can also define other User Environment Variables to change at
-the same time. Muto switches versions of Ruby by just regex-ing out the ruby bin folder out of your Windows PATH variable and replacing it with the new
-version you choose. This way none of the other paths in your environments PATH variable are altered.
+As well as being able to switch to other versions of Ruby in your Windows environment, you can also define other User Environment Variables to change at the same time. Muto switches versions of Ruby by just regex-ing out the ruby bin folder out of your Windows PATH variable and replacing it with the new version you choose. This way none of the other paths in your environments PATH variable are altered.
 
-The User Environment Variables are set completely differently! The values you give them are the full values used to define the variable so if there is an
-existing variable already defined in your User Environment variables then it will be overwritten with the new value.
+The User Environment Variables are set completely differently! The values you give them are the full values used to define the variable so if there is an existing variable already defined in your User Environment variables then it will be overwritten with the new value.
 
 *ADD A 'HOME' ENVIRONMENT VARIABLE FOR EACH VERSION OF RUBY!!*
-Ruby will install and run just fine without a 'HOME' environment variable, however you'll likely run into problems with rubygems while installing gems
-if you do not setup a 'HOME' environment variable for each separate version of ruby you install. I usually just create an empty directory within the
-ruby folder I'm using and then just add a 'HOME' environment variable to my 'ruby_versions.yml' file like in the following example.
+Ruby will install and run just fine without a 'HOME' environment variable, however you'll likely run into problems with rubygems while installing gems if you do not setup a 'HOME' environment variable for each separate version of ruby you install. I usually just create an empty directory within the ruby folder I'm using and then just add a 'HOME' environment variable to my 'ruby_versions.yml' file like in the following example.
 
 *To add multiple items to your windows PATH environment variable when switching*
 Inside my windows PATH environment variable I've manually added an %ADD_TO_PATH% environment variable so that it looks something like this:
 PATH: C;\path\to\stuff\etc; %ADD_TO_PATH%
-In the following example, when switching to my "rhodes" environment I want to add a heap of stuff to my windows PATH environment variable that I don't want
-to be in the PATH when using ruby 186 or 192. In these cases I use a tilde '~' character or a semicolon ';' which will just change the value of the
-%ADD_TO_PATH% variable to a semicolon and adding nothing to the PATH when I switch between versions.
+In the following example, when switching to my "rhodes" environment I want to add a heap of stuff to my windows PATH environment variable that I don't want to be in the PATH when using ruby 186 or 192. In these cases I use a tilde '~' character or a semicolon ';' which will just change the value of the %ADD_TO_PATH% variable to a semicolon and adding nothing to the PATH when I switch between versions.
 
 <pre>
 # ruby_versions.yml example
