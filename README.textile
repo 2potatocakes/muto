@@ -77,9 +77,9 @@ The User Environment Variables are set completely differently! The values you gi
 Ruby will install and run just fine without a 'HOME' environment variable, however you'll likely run into problems with rubygems while installing gems if you do not setup a 'HOME' environment variable for each separate version of ruby you install. I usually just create an empty directory within the ruby folder I'm using and then just add a 'HOME' environment variable to my 'ruby_versions.yml' file like in the following example.
 
 *To add multiple items to your windows PATH environment variable when switching*
-Inside my windows PATH environment variable I've manually added an %ADD_TO_PATH% environment variable so that it looks something like this:
-PATH: C;\path\to\stuff\etc; %ADD_TO_PATH%
-In the following example, when switching to my "rhodes" environment I want to add a heap of stuff to my windows PATH environment variable that I don't want to be in the PATH when using ruby 186 or 192. In these cases I use a tilde '~' character or a semicolon ';' which will just change the value of the %ADD_TO_PATH% variable to a semicolon and adding nothing to the PATH when I switch between versions.
+Inside my windows PATH environment variable I've manually added an \%ADD_TO_PATH\% environment variable so that it looks something like this:
+PATH: C;\path\to\stuff\etc; \%ADD_TO_PATH\%
+In the following example, when switching to my "rhodes" environment I want to add a heap of stuff to my windows PATH environment variable that I don't want to be in the PATH when using ruby 186 or 192. In these cases I use a tilde '~' character or a semicolon ';' which will just change the value of the \%ADD_TO_PATH\% variable to a semicolon and adding nothing to the PATH when I switch between versions.
 
 <pre>
 # ruby_versions.yml example
